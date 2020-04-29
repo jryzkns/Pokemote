@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements
             currentFrame = baseFrame.clone();
         }
 
+        if (kpDetect.doneLoading){    
         Imgproc.cvtColor(baseFrame, processingFrame, Imgproc.COLOR_RGBA2GRAY);
         Imgproc.equalizeHist(processingFrame, processingFrame);
 
@@ -242,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements
                 Photo.inpaint(baseFrame, p_, baseFrame,8,Photo.INPAINT_NS);
                 Imgproc.cvtColor(baseFrame, baseFrame,Imgproc.COLOR_RGB2RGBA);
             }
+        }
         }
 
         frameCount = (frameCount + 1);
