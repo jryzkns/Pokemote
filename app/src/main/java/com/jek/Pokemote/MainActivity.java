@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements
     private boolean                 easterEgg = false;
 
     private FaceQueue               faceQueue;
-
+    private boolean                 doneLoading = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-
+        if (doneLoading == false) {
         Mat baseFrame = isFrozen ? frozenFrame.clone() : inputFrame.rgba();
 
         if (!isFrozen) {
@@ -245,9 +245,12 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         frameCount = (frameCount + 1);
-
+        doneLoading = true;
         return baseFrame;
     }
+        return null;
+    }
+
 
     private void swapCamera() {
         Toast.makeText(getApplicationContext(),"Camera Switch!", Toast.LENGTH_SHORT).show();
